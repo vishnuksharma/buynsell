@@ -1,28 +1,32 @@
---- 
-cache: 
-  paths: 
-    - node_modules/
-image: "node:latest"
-install-dependencies: 
-  artifacts: 
-    paths: 
-      - node_modules/
-  script: 
-    - "npm install"
-  stage: build
-lint-checks: 
-  script: 
-    - "npm run lint"
-  stage: test
-production: 
-  only: 
-    - master
-  script: 
-    - "npm install --production"
-    - "(echo \"machine git.heroku.com\"; echo \" login vishnuduveys@gmail.com\"; echo \" password $HEROKU_API_KEY\") > ~/.netrc"
-    - "git push https://git.heroku.com/appbuynsell.git HEAD:master"
-  stage: production
-  type: deploy
+image: node:latest
+
 stages: 
   - build
   - production
+
+cache:
+  paths:
+    - node_modules/
+
+install-dependencies:
+  stage: build
+  script: 
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+lint-checks:
+  stage: test
+  script: 
+    - npm run lint
+
+production:
+  type: deploy
+  stage: production
+  script:
+    - npm install --production
+    - (echo "machine git.heroku.com"; echo " login vishnuduveys@gmail.com"; echo " password $HEROKU_API_KEY") > ~/.netrc
+    - git push https://git.heroku.com/appbuynsell.git HEAD:master
+  only:
+    - master
