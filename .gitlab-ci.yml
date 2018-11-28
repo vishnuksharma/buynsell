@@ -2,7 +2,6 @@ image: node:latest
 
 stages: 
   - build
-  # - test
   - production
 
 cache:
@@ -16,11 +15,6 @@ install-dependencies:
   artifacts:
     paths:
       - node_modules/
-
-lint-checks:
-  stage: test
-  script: 
-    - npm run lint
 
 production:
   type: deploy
