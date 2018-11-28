@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <% include common/head.ejs %>
+
+  <body>
+      <div class="container">
+          <div class="headerlink">
+              <% include common/navbar.ejs %>
+          </div>
+          <div class="content-wrapper">
+              <div class="regi-container">
+                  <!-- <h1 class="form-heading">Registration Form</h1> -->
+                  <div class="login-form">
+                  <div class="main-div">
+                      <div class="panel">
+                     <h2>Register</h2>
+                     <p>Please enter your details</p>
+                     </div>
+                     <div class="alert alert-success d-none success-reg" role="alert">
+                        Registration successful Please click <a href="/users/login">login</a>!
+                      </div>
+                      <div class="alert alert-danger d-none error-reg" role="alert">
+                          Something went wrong Please try again!
+                        </div>
+                        <div class="alert alert-danger d-none error" role="alert">
+                            Password & Confirm Password not matched!
+                          </div>
+                      <form id="registerForm" class="registerForm" method="POST">
+                          <div class="form-group">
+                              <select class="form-control" name="usertype" id="usertype">
+                                <option value="seller">Seller</option>
+                                <option value="buyer">Buyer</option>
+                              </select>    
+                            </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="fname" placeholder="Full Name" required/>    
+                          </div>
+                          <div class="form-group">
+                              <input type="email" class="form-control" name="email" placeholder="Email Address" required/>    
+                          </div>
+                  
+                          <div class="form-group">    
+                              <input type="password" class="form-control" name="password" placeholder="Password" minlength="6" required/>    
+                          </div>
+                          <div class="form-group">    
+                            <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password" required/>    
+                        </div>
+                          <div class="form-group">
+                            <input type="tel" class="form-control" name="mobile" placeholder="Mobile Number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                            <span class="phoneformat">Format: 123-456-7890</span>
+                          </div>
+                          <div class="form-group">
+                            <textarea type="address" rows="2" class="regi-address form-control" name="address" placeholder="Full Address" required></textarea>
+                          </div>
+                          <!-- <div class="forgot">
+                            <a href="login">Login Here</a>
+                          </div> -->
+                          <button type="submit" class="btn btn-primary registeruser">Register</button>
+                  
+                      </form>
+                      </div>
+                  <p class="botto-text"> </p>
+                  </div></div></div>
+          </div>
+        </div>   
+    
+    </body>
+    
+</html>

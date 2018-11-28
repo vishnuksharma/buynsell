@@ -1,0 +1,13 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image:url("/images/wallpapers.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;
+}
+a {
+  color: #00B7FF;
+}
+@media(min-width: 768px) {
+  .field-label-responsive {
+    padding-top: .5rem;
+    text-align: right;
+  }
+}

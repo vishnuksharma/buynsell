@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include common/head.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headerlink">
+          <% include common/navbar.ejs %>
+      </div>
+      <section class="jumbotron text-center">
+        <div class="site-desc">
+            <h1 class="jumbotron-heading">E-COMMERCE BUY & SELL</h1>
+            <p class="lead text-muted mb-0">You can buy and sell preloved (used) household items (eg. Chair, table, television, cupboard, bed, etc.)</p>
+        </div>
+      </section>
+      
+      <div class="content-wrapper">
+        <div class="product-list">
+          <div class="row">
+              <div class="col-12 col-sm-3">
+                  <div class="card bg-light mb-3">
+                      <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
+                      <ul class="list-group category_block">
+                          <li class="list-group-item"><a href="/users/profile">Profile Info</a></li>
+                          <% if(userData.usertype == "seller") {%>
+                          <li class="list-group-item"><a href="/products/myproducts">My Product</a></li>
+                          <li class="list-group-item active"><a href="/products/add">Add Product</a></li>
+                          <% }%>
+                          <% if(userData.usertype == "buyer") {%>
+                          <li class="list-group-item"><a href="/products/buyingrecords">Buying Records</a></li>
+                          <% }%>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="row">
+                      <div class="col-xs-12 col-md-11 alert alert-success d-none success">Detail Successfully saved.</div>
+                      <div class="col-xs-12 col-md-11 alert alert-danger d-none error">
+                        </div>
+                      <form class="productForm" role="form" method="POST">
+                        <input type="hidden" name="userid" <% if(userData._id) {%> value="<%= userData._id %>" <% } %> />
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="title">Title</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="text" name="title" class="form-control"
+                                               placeholder="Product title" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="image">Image URL</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="text" name="image" class="form-control"
+                                               placeholder="Image URL" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="price">Price</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="number" name="price" class="form-control"
+                                               placeholder="Your Price" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="status">Status</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <select name="status" class="form-control">
+                                          <option value="active">Active</option>
+                                          <option value="disabled">Disabled</option>
+                                          <option value="sold">Sold</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="category">Product Category</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <select name="category" class="form-control">
+                                            <option value="house">House Holds</option>
+                                            <option value="vehicles">Vehicles</option>
+                                            <option value="electronics">Electronics</option>
+                                          </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="usedperiod">Used Period</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="text" name="usedperiod" class="form-control" placeholder="Used Period" required  />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="deliverymethod">Delivery Method</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <select name="deliverymethod" class="form-control">
+                                            <option value="delivery">Delivery</option>
+                                            <option value="pickup">Pickup</option>
+                                          </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-8">
+                                <div class="form-group has-danger">
+                                    <label for="password">Product Description</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <textarea rows="2" class="desc form-control" name="desc" placeholder="Description" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                  </div>
+              </div>
+      
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>

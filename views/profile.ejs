@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include common/head.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headerlink">
+          <% include common/navbar.ejs %>
+      </div>
+      <section class="jumbotron text-center">
+        <div class="site-desc">
+            <h1 class="jumbotron-heading">E-COMMERCE BUY & SELL</h1>
+            <p class="lead text-muted mb-0">You can buy and sell preloved (used) household items (eg. Chair, table, television, cupboard, bed, etc.)</p>
+        </div>
+      </section>
+      
+      <div class="content-wrapper">
+        <div class="product-list">
+          <div class="row">
+              <div class="col-12 col-sm-3">
+                  <div class="card bg-light mb-3">
+                      <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
+                      <ul class="list-group category_block">
+                          <li class="list-group-item active"><a href="/users/profile">Profile Info</a></li>
+                          <% if(userData.usertype == "seller") {%>
+                          <li class="list-group-item"><a href="/products/myproducts">My Product</a></li>
+                          <li class="list-group-item"><a href="/products/add">Add Product</a></li>
+                          <% }%>
+                          <% if(userData.usertype == "buyer") {%>
+                          <li class="list-group-item"><a href="/products/buyingrecords">Buying Records</a></li>
+                          <% }%>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="row">
+                      <div class="col-xs-12 col-md-11 alert alert-success d-none success">Detail Successfully saved.</div>
+                      <div class="col-xs-12 col-md-11 alert alert-danger d-none error">
+                          Password & Confirm Password not matched!
+                        </div>
+                      <form class="userProfile" role="form" method="POST">
+                        <input type="hidden" name="id" <% if(userData._id) {%> value="<%= userData._id %>" <% } %> />
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="password">User Type</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <select disabled="true" class="form-control" name="usertype">
+                                          <option <% if(userData.usertype == "seller") {%> selected="true" <% } %> value="seller">Seller</option>
+                                          <option <% if(userData.usertype == "buyer") {%> selected="true" <% } %> value="seller">Buyer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="text" name="fname" class="form-control"
+                                               placeholder="John Doe" required 
+                                               <% if(userData.fname) {%> value="<%= userData.fname %>" <% } %> />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="name">E-Mail</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="email" name="email" class="form-control"
+                                               placeholder="you@example.com" required 
+                                               <% if(userData.email) {%> value="<%= userData.email %>" <% } %> />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="password">Mobile Number</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="tel" name="mobile" class="form-control"
+                                        placeholder="Format 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required
+                                        <% if(userData.mobile) {%> value="<%= userData.mobile %>" <% } %> />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group has-danger">
+                                    <label for="password">Password</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="password" name="password" class="form-control"
+                                               placeholder="Password" required minlength="6"
+                                              value="******xxxxxxxx" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="password">Confirm Password</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="password" name="cpassword" class="form-control" placeholder="Password" required
+                                        value="******xxxxxxxx" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                                <div class="form-group has-danger">
+                                    <label for="password">Address</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <textarea type="address" rows="2" class="regi-address form-control" name="address" placeholder="Full Address" required><% if(userData.address) {%><%= userData.address %><% }%></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                  </div>
+              </div>
+      
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include common/head.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headerlink">
+          <% include common/navbar.ejs %>
+      </div>
+      <section class="jumbotron text-center">
+        <div class="site-desc">
+            <h1 class="jumbotron-heading">E-COMMERCE BUY & SELL</h1>
+            <p class="lead text-muted mb-0">You can buy and sell preloved (used) household items (eg. Chair, table, television, cupboard, bed, etc.)</p>
+        </div>
+      </section>
+      
+      <div class="content-wrapper">
+        <div class="product-list">
+          <div class="row">
+              <div class="col-12 col-sm-3">
+                  <div class="card bg-light mb-3">
+                      <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
+                      <ul class="list-group category_block">
+                          <li class="list-group-item"><a href="/users/profile">Profile Info</a></li>
+                          <% if(userData.usertype == "seller") {%>
+                          <li class="list-group-item active"><a href="products/myproducts">My Product</a></li>
+                          <li class="list-group-item"><a href="/products/add">Add Product</a></li>
+                          <% }%>
+                      </ul>
+                  </div>
+                  <!-- <div class="card bg-light mb-3">
+                      <div class="card-header bg-success text-white text-uppercase">Last product</div>
+                      <div class="card-body">
+                          <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
+                          <h5 class="card-title">Product title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="bloc_left_price">99.00 $</p>
+                      </div>
+                  </div> -->
+              </div>
+              <div class="col">
+                  <div class="row">
+                      <%
+                      if (myproductList && myproductList.length > 0) { 
+                      for(var i=0; i<myproductList.length; i++) {%>
+                          <div class="col-12 col-md-6 col-lg-4">
+                              <div class="card">
+                                  <img class="card-img-top" src="<%= myproductList[i].image%>" alt="Card image cap">
+                                  <div class="card-body">
+                                      <h4 class="card-title"><a href="/products/productdetail" title="View Product"><%= myproductList[i].title%></a></h4>
+                                      <p class="card-text"><%= myproductList[i].desc%></p>
+                                      <div class="row">
+                                          <div class="col">
+                                              <p class="btn btn-danger btn-block"><%= myproductList[i].price%> RIM</p>
+                                          </div>
+                                          <div class="col">
+                                              <a href="javascript:;" class="btn btn-success btn-block"><%= myproductList[i].status%></a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                       <% } } else {%>
+                        <div class="col-12 col-sm-11 alert alert-success" role="alert"> No Products Available.
+                          </div>
+                        <% }%>
+                  </div>
+              </div>
+      
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>
