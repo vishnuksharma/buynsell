@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const config = require('./config.js');
 
 const db = () => {
+  // console.log(process.env, '--------')
   const connectionURL = process.env.DBURL || config.mongodburi;
 
   console.log('BD coneection>>>>>>>>>>>>>');
