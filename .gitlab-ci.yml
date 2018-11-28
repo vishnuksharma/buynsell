@@ -22,6 +22,6 @@ production:
   script:
     - npm install --production
     - (echo "machine git.heroku.com"; echo " login vishnuduveys@gmail.com"; echo " password $HEROKU_API_KEY") > ~/.netrc
-    - git push https://git.heroku.com/appbuynsell.git HEAD:master
+    - git push https://git.heroku.com/appbuynsell.git
   only:
     - master
