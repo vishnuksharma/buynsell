@@ -16,11 +16,6 @@ install-dependencies:
     paths:
       - node_modules/
 
-lint-checks:
-  stage: test
-  script: 
-    - npm run lint
-
 production:
   type: deploy
   stage: production
