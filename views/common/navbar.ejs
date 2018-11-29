@@ -22,7 +22,7 @@
       <% if (!userData.email) { %>
         <a href="/users/login">Login</a> | <a href="/users/register">Register</a>
       <% } else { %>
-        <span class="bg-light">Welcome <%= userData.fname%></span>
+        <span class="text-white">Welcome <%= userData.fname%></span> | 
         <a href="/users/profile">Profile</a> | <a href="/users/logout">Logout</a>
       <% } %>
         
