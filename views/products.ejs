@@ -48,14 +48,14 @@
                               <div class="card">
                                   <img class="card-img-top" src="<%= productList[i].image%>" alt="Card image cap">
                                   <div class="card-body">
-                                      <h4 class="card-title"><a href="/products/productdetail" title="View Product"><%= productList[i].title%></a></h4>
+                                      <h4 class="card-title"><a href="/products/productdetail/<%= productList[i]._id%>" title="View Product"><%= productList[i].title%></a></h4>
                                       <p class="card-text"><%= productList[i].desc%></p>
                                       <div class="row">
                                           <div class="col">
                                               <p class="btn btn-danger btn-block"><%= productList[i].price%> RIM</p>
                                           </div>
                                           <div class="col">
-                                              <a href="#" class="btn btn-success btn-block">Buy</a>
+                                              <a href="/products/buy/<%= productList[i]._id%>" class="btn btn-success btn-block">Buy</a>
                                           </div>
                                       </div>
                                   </div>

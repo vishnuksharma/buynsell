@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include common/head.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headerlink">
+          <% include common/navbar.ejs %>
+      </div>
+      <section class="jumbotron text-center">
+        <div class="site-desc">
+            <h1 class="jumbotron-heading">E-COMMERCE BUY & SELL</h1>
+            <p class="lead text-muted mb-0">You can buy and sell preloved (used) household items (eg. Chair, table, television, cupboard, bed, etc.)</p>
+        </div>
+      </section>
+      
+      <div class="content-wrapper">
+        <div class="product-list">
+          <div class="row">
+              <div class="col-12 col-sm-3">
+                  <div class="card bg-light mb-3">
+                      <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
+                      <ul class="list-group category_block">
+                          <li class="list-group-item"><a href="/users/profile">Profile Info</a></li>
+                          <% if(userData.usertype == "admin") {%>
+                            <li class="list-group-item active"><a href="/products/transhistory">Transaction History</a></li>
+                          <% }%>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="row">
+                      <div class="col-12">
+                        <% if (transList && transList.length > 0) { %>
+                          <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Product Name</th>
+                                  <th>Product Price</th>
+                                  <th>%</th>
+                                  <th>Admin Share</th>
+                                  <th>Owner Share</th>
+                                  <th>Seller</th>
+                                  <th>Buyer</th>
+                                  <th>Trans. Date</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <%
+                                for(var i=0; i<transList.length; i++) {%>
+                                <tr>
+                                  <td><%= transList[i].prodname%></td>
+                                  <td><%= transList[i].prodprice%> RIM</td>
+                                  <td><%= transList[i].feesper%>%</td>
+                                  <td><%= transList[i].adminfees%> RIM</td>
+                                  <td><%= transList[i].prodownermoney%> RIM</td>
+                                  <td><%= transList[i].soldby%></td>
+                                  <td><%= transList[i].boughtby%></td>
+                                  <td><% 
+                                    var newdate = new Date(transList[i].transdate) %>
+                                    <%= newdate.getDate()%>-<%= newdate.getMonth()%>-<%= newdate.getFullYear()%> <%= newdate.getHours()%>:<%= newdate.getMinutes()%>:<%= newdate.getSeconds()%></td>
+                                </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
+                          <% } else {%>
+                            <div class="col-12 col-sm-11 alert alert-success" role="alert"> No Transaction History.
+                              </div>
+                            <% }%>
+                      </div>
+                  </div>
+              </div>
+      
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>

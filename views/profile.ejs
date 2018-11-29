@@ -20,15 +20,19 @@
           <div class="row">
               <div class="col-12 col-sm-3">
                   <div class="card bg-light mb-3">
-                      <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
+                      <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
                       <ul class="list-group category_block">
                           <li class="list-group-item active"><a href="/users/profile">Profile Info</a></li>
                           <% if(userData.usertype == "seller") {%>
-                          <li class="list-group-item"><a href="/products/myproducts">My Product</a></li>
+                            <li class="list-group-item"><a href="/products/myproducts">Listed Prodects</a></li>
+                            <li class="list-group-item"><a href="/products/purchased">Product Purchased</a></li>
                           <li class="list-group-item"><a href="/products/add">Add Product</a></li>
                           <% }%>
-                          <% if(userData.usertype == "buyer") {%>
-                          <li class="list-group-item"><a href="/products/buyingrecords">Buying Records</a></li>
+                          <% if(userData.usertype == "buyer" || userData.usertype == "seller") {%>
+                            <li class="list-group-item"><a href="/products/buyingrecords">Purchase History</a></li>
+                          <% }%>
+                          <% if(userData.usertype == "admin") {%>
+                            <li class="list-group-item"><a href="/products/transhistory">Transaction History</a></li>
                           <% }%>
                       </ul>
                   </div>
@@ -49,6 +53,7 @@
                                         <select disabled="true" class="form-control" name="usertype">
                                           <option <% if(userData.usertype == "seller") {%> selected="true" <% } %> value="seller">Seller</option>
                                           <option <% if(userData.usertype == "buyer") {%> selected="true" <% } %> value="seller">Buyer</option>
+                                          <option <% if(userData.usertype == "admin") {%> selected="true" <% } %> value="admin">Admin</option>
                                         </select>
                                     </div>
                                 </div>
@@ -91,7 +96,7 @@
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                         <input type="password" name="password" class="form-control"
                                                placeholder="Password" required minlength="6"
-                                              value="******xxxxxxxx" />
+                                              value="" />
                                     </div>
                                 </div>
                             </div>
@@ -99,10 +104,35 @@
                                 <div class="form-group">
                                     <label for="password">Confirm Password</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                        <input type="password" name="cpassword" class="form-control" placeholder="Password" required
-                                        value="******xxxxxxxx" />
+                                        <input type="password" name="cpassword" class="form-control" minlength="6" placeholder="Password" required
+                                        value="" />
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                                <div class="form-group has-danger">
+                                    <label for="password">Rating</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <fieldset class="rating">
+                                            <!-- <legend>Please rate:</legend> -->
+                                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!"><%= userData.rating %> stars</label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="name">Account Balance</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="number" name="money" class="form-control"
+                                               placeholder="Your Balance" required 
+                                               <% if(userData.money) {%> value="<%= userData.money %>" <% } %> />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">                                
                             </div>
                         </div>
                         <div class="row">
@@ -114,6 +144,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-md-4"></div>
                             <div class="col-xs-12 col-md-4">                                
                             </div>
                         </div>
@@ -125,6 +156,7 @@
                     </form>
                     
                   </div>
+                  
               </div>
       
           </div>

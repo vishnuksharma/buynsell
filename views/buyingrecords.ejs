@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include common/head.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headerlink">
+          <% include common/navbar.ejs %>
+      </div>
+      <section class="jumbotron text-center">
+        <div class="site-desc">
+            <h1 class="jumbotron-heading">E-COMMERCE BUY & SELL</h1>
+            <p class="lead text-muted mb-0">You can buy and sell preloved (used) household items (eg. Chair, table, television, cupboard, bed, etc.)</p>
+        </div>
+      </section>
+      
+      <div class="content-wrapper">
+        <div class="product-list">
+          <div class="row">
+              <div class="col-12 col-sm-3">
+                  <div class="card bg-light mb-3">
+                      <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Account Details</div>
+                      <ul class="list-group category_block">
+                          <li class="list-group-item"><a href="/users/profile">Profile Info</a></li>
+                          <% if(userData.usertype == "seller") {%>
+                          <li class="list-group-item"><a href="/products/myproducts">Unsold Products</a></li>
+                          <li class="list-group-item"><a href="/products/purchased">Sold Products</a></li>
+                          <li class="list-group-item"><a href="/products/add">Add Product</a></li>
+                          <% }%>
+                          <% if(userData.usertype == "buyer" || userData.usertype == "seller") {%>
+                          <li class="list-group-item active"><a href="/products/buyingrecords">Purchase History</a></li>
+                          <% }%>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="row">
+                      <div class="col-12">
+                        <% if (buyingList && buyingList.length > 0) { %>
+                          <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Bought Product</th>
+                                  <th>Product Price</th>
+                                  <th>Sold By</th>
+                                  <th>Purchase Date</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <%
+                                for(var i=0; i<buyingList.length; i++) {%>
+                                <tr>
+                                  <td><%= buyingList[i].prodname%></td>
+                                  <td><%= buyingList[i].prodprice%></td>
+                                  <td><%= buyingList[i].soldby%></td>
+                                  <td><% 
+                                    var newdate = new Date(buyingList[i].transdate) %>
+                                    <%= newdate.getDate()%>-<%= newdate.getMonth()%>-<%= newdate.getFullYear()%> <%= newdate.getHours()%>:<%= newdate.getMinutes()%>:<%= newdate.getSeconds()%></td>
+                                </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
+                          <% } else {%>
+                            <div class="col-12 col-sm-11 alert alert-success" role="alert"> No Products History.
+                              </div>
+                            <% }%>
+                      </div>
+                  </div>
+              </div>
+      
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>

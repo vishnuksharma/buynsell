@@ -24,8 +24,8 @@
                       <ul class="list-group category_block">
                           <li class="list-group-item"><a href="/users/profile">Profile Info</a></li>
                           <% if(userData.usertype == "seller") {%>
-                          <li class="list-group-item active"><a href="/products/myproducts">Unsold Products</a></li>
-                          <li class="list-group-item"><a href="/products/purchased">Sold Products</a></li>
+                          <li class="list-group-item"><a href="/products/myproducts">Unsold Products</a></li>
+                          <li class="list-group-item active"><a href="/products/purchased">Sold Products</a></li>
                           <li class="list-group-item"><a href="/products/add">Add Product</a></li>
                           <% }%>
                           <% if(userData.usertype == "buyer" || userData.usertype == "seller") {%>
@@ -59,7 +59,7 @@
                                               <p class="btn btn-danger btn-block"><%= myproductList[i].price%> RIM</p>
                                           </div>
                                           <div class="col">
-                                              <a href="javascript:;" class="btn btn-success btn-block"><%= myproductList[i].status%></a>
+                                              <a href="javascript:;" class="btn btn-secondary btn-block"><%= myproductList[i].status%></a>
                                           </div>
                                       </div>
                                   </div>

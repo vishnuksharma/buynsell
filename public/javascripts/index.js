@@ -68,7 +68,6 @@ var Registration = (function (window, undefined) {
         e.preventDefault();
         $('.error-reg').addClass('d-none');
         var formData = $('form.loginForm').serializeFormJSON();
-        console.log(formData);
         var resReg = postData('/users/login', formData, 'POST');
         resReg.then(
           function(response) {
@@ -154,6 +153,8 @@ var Registration = (function (window, undefined) {
 })(window);
 
 var registration = new Registration();
+var productC = new ProductComponent();
 window.onload = function(){
   registration.init();
+  productC.init();
 }

@@ -9,8 +9,8 @@ const UserSchema = new Schema({
   address: String,
   fname: String,
   usertype: String,
-  rating: {type: String, required: true, default: '0'},
-  money: {type: String, required: true, default: '10'}
+  rating: {type: Number, required: true, default: 0},
+  money: {type: Number, required: true, default: 10}
 });
 
 // Export the Model

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include common/head.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headerlink">
+          <% include common/navbar.ejs %>
+      </div>
+      <section class="jumbotron text-center">
+        <div class="site-desc">
+            <h1 class="jumbotron-heading">E-COMMERCE BUY & SELL</h1>
+            <p class="lead text-muted mb-0">You can buy and sell preloved (used) household items (eg. Chair, table, television, cupboard, bed, etc.)</p>
+        </div>
+      </section>
+      
+      <div class="content-wrapper">
+        <div class="product-list">
+          <div class="row">
+            <% if (productDetail && productDetail.length > 0) {%>
+              <div class="col-12 col-md-12">
+                  <div class="row">
+                      <div class="col-12 col-md-6">
+                          <div class="card">
+                              <img class="card-img-top" src="<%= productDetail[0].image%>" alt="Card image cap">
+                          </div>
+                      </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title"><%= productDetail[0].title%></h4>
+                                    <h6 class="card-title">Category <%= productDetail[0].category%></h6>
+                                    <h6 class="card-title">Used <%= productDetail[0].usedperiod%></h6> 
+                                    <h6 class="card-title">Delivery Method <%= productDetail[0].deliverymethod%></h6>                                   
+                                    <p class="card-text"><%= productDetail[0].desc%></p>
+                                    <div class="row">
+                                        <% if (lessBalance == "yes") {%>
+                                          <div class="col-12 col-sm-11 alert alert-danger">You have less Account Balance.</div>
+                                        <% }%>
+                                        <div class="col">
+                                            <p class="btn btn-danger btn-block"><%= productDetail[0].price%> RIM</p>
+                                        </div>
+                                        <div class="col">
+                                          <% if (lessBalance == "no") {%>
+                                          <a href="/products/confirm/<%= productDetail[0]._id%>" class="btn btn-success btn-block confirmBuyHandler">Confirm</a>
+                                          <% } else {%>
+                                            <a href="javascript:;" class="btn btn-secondary btn-block confirmBuyHandler">Confirm</a>
+                                          <% }%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+              <% }%>
+              
+              
+      
+          </div>
+      </div>
+      
+      </div>
+    </div>
+  </body>
+</html>
