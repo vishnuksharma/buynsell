@@ -35,7 +35,22 @@ var Registration = (function (window, undefined) {
       loginUser();
       updateUserProfile();
       saveProduct();
+      openMobileMenu();
     };
+    var openMobileMenu = function (){
+
+      document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', function (){   
+       var ele = document.getElementById('navbarSupportedContent')
+      //  console.log(ele.classList);
+       var hasClass = ele.classList.contains('collapse');
+       if (hasClass){
+         ele.classList.remove("collapse");
+      } else {
+        ele.classList.add("collapse");
+       }
+
+      });
+    }
     var updateUserProfile = function () {
       $('form.userProfile').on('submit', function (e){
         e.preventDefault();
