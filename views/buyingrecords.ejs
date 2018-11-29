@@ -41,7 +41,7 @@
                           <table class="table table-striped">
                               <thead>
                                 <tr>
-                                  <th>Bought Product</th>
+                                  <th>Product Name</th>
                                   <th>Product Price</th>
                                   <th>Sold By</th>
                                   <th>Purchase Date</th>
@@ -52,7 +52,7 @@
                                 for(var i=0; i<buyingList.length; i++) {%>
                                 <tr>
                                   <td><%= buyingList[i].prodname%></td>
-                                  <td><%= buyingList[i].prodprice%></td>
+                                  <td><%= buyingList[i].prodprice%> RIM</td>
                                   <td><%= buyingList[i].soldby%></td>
                                   <td><% 
                                     var newdate = new Date(buyingList[i].transdate) %>
