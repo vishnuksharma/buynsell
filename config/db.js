@@ -3,7 +3,8 @@ const config = require('./config.js');
 
 const db = () => {
   
-  const connectionURL = process.env.DBURL || config.DBURL;
+  // const connectionURL = process.env.DBURL || config.mongodburi;
+  const connectionURL = process.env.DBURL || config.DBURL
 
   console.log('BD coneection>>>>>>>>>>>>>');
   console.log(connectionURL);
