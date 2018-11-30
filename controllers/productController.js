@@ -28,6 +28,7 @@ const userController = {
     var lessBalance = 'no';
     if (user._id === undefined){
       res.redirect('/users/login')
+      return false;
     }
     Products.find({_id: req.params.id}, function (error, productDetail) { 
       if(productDetail && productDetail.length > 0){
@@ -44,8 +45,9 @@ const userController = {
 
   getAddProductPage(req, res){
     var user = (req.session.userData)? req.session.userData : {};
-    if (user.email === undefined){
-      res.redirect('/products/products')
+    if (user.email === undefined || (user && user.usertype !== 'seller') ){
+      res.redirect('/products/products');
+      return false;
     }
     res.render('addproduct', { title: 'Buy & Sell - Add Product', userData: user });
   },
@@ -53,7 +55,8 @@ const userController = {
   saveProduct(req, res) {
     var user = (req.session.userData)? req.session.userData : {};
     if (user.email === undefined){
-      res.redirect('/products/products')
+      res.redirect('/products/products');
+      return false;
     }
     const product = new Products(req.body);
     product.save(error => {
@@ -73,8 +76,9 @@ const userController = {
 
   getMyProductPage(req, res) {
     var user = (req.session.userData)? req.session.userData : {};
-    if (user.email === undefined){
-      res.redirect('/products/products')
+    if (user.email === undefined || (user && user.usertype !== 'seller') ){
+      res.redirect('/products/products');
+      return false;
     }
     Products.find({userid: user._id, status: {$ne : 'sold'}}, function (error, productlist) {
       res.render('myproducts', { title: 'Buy & Sell - Product Listing', userData: user, myproductList: productlist });
@@ -84,7 +88,8 @@ const userController = {
   getPurchasedPage (req, res){
     var user = (req.session.userData)? req.session.userData : {};
     if (user.email === undefined){
-      res.redirect('/products/products')
+      res.redirect('/products/products');
+      return false;
     }
     Products.find({userid: user._id, status: 'sold'}, function (error, productlist) {
       res.render('purchased', { title: 'Buy & Sell - Product Listing', userData: user, myproductList: productlist });
@@ -94,7 +99,8 @@ const userController = {
   getConfirmProductPage(req, res) {
     var user = (req.session.userData)? req.session.userData : {};
     if (user._id === undefined){
-      res.redirect('/users/login')
+      res.redirect('/users/login');
+      return false;
     }
     
     Products.find({_id: req.params.id}, function (error, productDetail) {

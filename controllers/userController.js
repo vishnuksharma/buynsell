@@ -7,7 +7,8 @@ const userController = {
   getRegisterPage (req, res) {
     var user = (req.session.userData)? req.session.userData : {};
     if (user.email !== undefined){
-      res.redirect('/products/products')
+      res.redirect('/products/products');
+      return false;
     }
     res.render("register", { title: "Buy & Sell - login", userData: user });
   },
@@ -43,7 +44,8 @@ const userController = {
   getLoginPage (req, res) {
     var user = (req.session.userData)? req.session.userData : {};
     if (user.email !== undefined){
-      res.redirect('/products/products')
+      res.redirect('/products/products');
+      return false;
     }
     res.render("login", { title: "Buy & Sell - login", userData: user });
   },
