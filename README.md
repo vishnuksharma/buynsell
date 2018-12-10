@@ -4,3 +4,4 @@
 2. Make sure you have up and running `MongoDB, Node` in your local.
 3. Run command `npm run serve` to start the application.
 4. The application will run on `http://localhost:3030/`
+5. Live URL for the DEMO : `https://buynsell.herokuapp.com/`
