@@ -48,13 +48,13 @@
                       <%
                       if (myproductList && myproductList.length > 0) { 
                       for(var i=0; i<myproductList.length; i++) {%>
-                          <div class="col-12 col-md-6 col-lg-4">
+                          <div class="col-12 col-md-6 col-lg-4 align-items-stretch d-flex top-b-p">
                               <div class="card">
-                                  <img class="card-img-top" src="<%= myproductList[i].image%>" alt="Card image cap">
-                                  <div class="card-body">
+                                  <img class="card-img-top card-img-list" src="<%= myproductList[i].image%>" alt="Card image cap">
+                                  <div class="card-body flex-column d-flex">
                                       <h4 class="card-title"><a href="/products/productdetail/<%= myproductList[i]._id%>" title="View Product"><%= myproductList[i].title%></a></h4>
                                       <p class="card-text"><%= myproductList[i].desc%></p>
-                                      <div class="row">
+                                      <div class="row mt-auto">
                                           <div class="col">
                                               <p class="btn btn-danger btn-block"><%= myproductList[i].price%> RIM</p>
                                           </div>

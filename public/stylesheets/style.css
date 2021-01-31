@@ -77,3 +77,12 @@ a {
   top:2px;
   left:2px;
 }
+
+img.card-img-list{
+  height: 30vh;
+  object-fit: cover;
+}
+.top-b-p{
+  /* padding-top: 15px; */
+  padding-bottom: 15px;
+}
