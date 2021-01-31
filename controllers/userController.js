@@ -30,7 +30,7 @@ const userController = {
           res.send({
             statuscode: 503,
             status: "error",
-            message: "Something went wrong please try again."
+            message: "Something went wrong please try again."+error
           });
         } else {
           res
